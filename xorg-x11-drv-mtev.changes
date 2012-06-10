@@ -1,0 +1,26 @@
+* Wed Jun 01 2011 Austin Zhang <austin.zhang@intel.com> - 0.1.13
+- Enabled l3g4200d gyroscope (part of BMC#18398)
+
+* Wed May 18 2011 Austin Zhang <austin.zhang@intel.com> - 0.1.13
+- Fixed API in-compatible issues derived from xserver update to
+  1.10.1. (BMC#17705)
+
+* Mon Apr 26 2011 Austin Zhang <austin.zhang@intel.com> - 0.1.13
+- Add ILITEK 2105 mtev Xorg configure file. (config part of BMC#16695)
+
+* Mon Apr 10 2011 Austin Zhang <austin.zhang@intel.com> - 0.1.13
+- Add Hanvon/PixCir mtev Xorg configure file. (BMC#16296)
+
+* Wed Feb 09 2011 Austin Zhang <austin.zhang@intel.com> - 0.1.13
+- Add sitronix mtev Xorg configure file. (part of BMC#13369)
+
+* Fri Jan 21 2011 Ling Yue <ling.yue@intel.com> - 0.1.13
+- Add cando mtev Xorg configure file. (BMC #11625)
+
+* Mon Dec 20 2010 Ling Yue <ling.yue@intel.com> - 0.1.13
+- Upgrade to 0.1.13: adapted to use libmtdev to support kernel protocol A and B 
+- Use spectacle BMC#11254
+
+* Thu Aug 19 2010 Priya Vijayan <priya.vijayan@intel.com> - 0.1.8~2010819
+- Initial import to MeeGo
+

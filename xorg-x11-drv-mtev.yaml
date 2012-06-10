@@ -1,0 +1,31 @@
+Name: xorg-x11-drv-mtev
+Summary: Multitouch input driver for Xserver
+Version: 0.1.13
+Release: 1
+Group: System/X Hardware Support
+License: GPLv2
+URL: http://gitorious.org/xorg/xf86-input-mtev
+Description: |
+    This is a xserver-xorg input driver for devices supporting Linux Multi-Touch protocol
+Sources:
+    - "%{name}-%{version}.tar.gz"
+    - 60-cando-mtev.conf
+    - 70-sitronix-mtev.conf
+    - 80-Hanvon-mtev.conf
+    - 90-ILI-mtev.conf
+    - 91-ecss10ot3.conf
+Patches:
+    - apis-match-for-xserver-1.10.1.patch
+    - add-orientation-support.patch
+PkgConfigBR:
+    - xorg-server
+    - xkbfile
+    - xproto
+    - inputproto
+    - xrandr
+    - randrproto
+    - xextproto
+    - mtdev
+Configure: none
+Builder: make
+

@@ -1,0 +1,72 @@
+
+
+From: Jeremias Bosch <jeremias.bosch@gmail.com>
+
+
+---
+ src/mtouch.h     |    1 +
+ src/multitouch.c |   32 ++++++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+), 0 deletions(-)
+
+diff --git a/src/mtouch.h b/src/mtouch.h
+index 7ba02c7..d43a068 100644
+--- a/src/mtouch.h
++++ b/src/mtouch.h
+@@ -66,6 +66,7 @@ struct mtev_mtouch {
+ 	bool invert_x;
+ 	bool invert_y;
+ 	bool swap_xy;
++        int rotation;
+ 
+ 	int min_x;
+ 	int max_x;
+diff --git a/src/multitouch.c b/src/multitouch.c
+index c55d742..51d6a78 100644
+--- a/src/multitouch.c
++++ b/src/multitouch.c
+@@ -301,6 +301,29 @@ static void process_state(LocalDevicePtr local,
+ 			if (mt->invert_y)
+ 				y = mt->max_y - y + mt->min_y;
+ 
++                        switch (mt->rotation)
++			{
++				case 1:
++				{
++					const int tmp = (mt->max_x - x) * (mt->max_y - mt->min_y) / (mt->max_x - mt->min_x) + mt->min_y;
++                                	x = (y - mt->min_y) * (mt->max_x - mt->min_x) / (mt->max_y - mt->min_y) + mt->min_x;
++					y = tmp;
++					break;
++				}
++				case 2:
++				{
++					x = mt->max_x - x + mt->min_x;
++					y = mt->max_y - y + mt->min_y;
++					break;
++				}
++				case 3:
++				{
++					const int tmp = (x - mt->min_x) * (mt->max_y - mt->min_y) / (mt->max_x - mt->min_x) + mt->min_y;
++                                        x = (mt->max_y - y) * (mt->max_x - mt->min_x) / (mt->max_y - mt->min_y) + mt->min_x;
++                                        y = tmp;
++					break;
++				}
++
+ 			valuators[valix++] = x;
+ 			valuators[valix++] = y;
+ 			valuators[valix++] = tp->touch_major;
+@@ -395,6 +418,15 @@ static InputInfoPtr preinit(InputDriverPtr drv, IDevPtr dev, int flags)
+ 	mt->invert_x = xf86SetBoolOption(local->options, "InvertX", FALSE);
+ 	mt->invert_y = xf86SetBoolOption(local->options, "InvertY", FALSE);
+ 
++        // o = 0
++        // 1 = CW 90
++        // 2 = CW 180
++        // 3 = CW 270
++        mt->rotation = xf86SetIntOption(local->options, "Rotation", 0);
++
++        if (mt->rotation < 0 || mt->rotation > 3)
++	        mt->rotation = 0;
++
+ 	local->flags |= XI86_CONFIGURED;
+ 
+ error:

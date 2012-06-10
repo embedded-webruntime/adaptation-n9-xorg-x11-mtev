@@ -1,0 +1,17 @@
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 busybox OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 fb_text2screen OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 hardlink OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 kexec-tools OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 libcal-rm-680-bin  OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 libwl1271-bin OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 n950-camera-fw OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 nokia-n950-configs OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 omap-update-display OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 parted2  OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 pulseaudio-settings-n950 OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 sysfsutils OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 ti-wl1271-firmware  OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 ti-wl1273-bt-firmware  OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 ti-wl1273-fm-radio-firmware OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 udev-rules-n950 OpenShellfish:Adaptation:N950-N9
+osc -A https://api.pub.meego.com copypac -t https://obs:444 CE:Adaptation:N950-N9 wl1271-cal-bin OpenShellfish:Adaptation:N950-N9

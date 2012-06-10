@@ -1,0 +1,80 @@
+diff -Naurp xorg-x11-drv-mtev-0.1.13-orig/src/multitouch.c xorg-x11-drv-mtev-0.1.13/src/multitouch.c
+--- xorg-x11-drv-mtev-0.1.13-orig/src/multitouch.c	2011-05-17 19:38:39.103481362 +0800
++++ xorg-x11-drv-mtev-0.1.13/src/multitouch.c	2011-05-18 02:06:33.383651975 +0800
+@@ -33,6 +33,11 @@
+ #include "common.h"
+ #include "mtouch.h"
+ 
++typedef InputInfoPtr LocalDevicePtr;
++#define XI86_POINTER_CAPABLE   0x40 /* capable of being a core pointer */
++#define XI86_SEND_DRAG_EVENTS  0x08
++#define XI86_CONFIGURED        0x02 /* the device has been configured */
++
+ static const char* const axis_labels_str[] = {
+ 	AXIS_LABEL_PROP_ABS_MT_POSITION_X,
+ 	AXIS_LABEL_PROP_ABS_MT_POSITION_Y,
+@@ -208,7 +213,7 @@ static int device_init(DeviceIntPtr dev,
+ 			xf86InitValuatorAxisStruct(dev, val, axes_labels[val],
+ 						   min,
+ 						   max,
+-						   1, 0, 1);
++						   1, 0, 1, Absolute);
+ 			xf86InitValuatorDefaults(dev, val);
+ 		}
+ 	}
+@@ -354,17 +359,18 @@ static Bool device_control(DeviceIntPtr 
+ 	}
+ }
+ 
+-static InputInfoPtr preinit(InputDriverPtr drv, IDevPtr dev, int flags)
++static int preinit(InputDriverPtr drv, InputInfoPtr pInfo, int flags)
+ {
+ 	struct mtev_mtouch *mt;
+-	InputInfoPtr local = xf86AllocateInput(drv, 0);
+-	if (!local)
+-		goto error;
++	//InputInfoPtr local = xf86AllocateInput(drv, 0);
++	//if (!local)
++	//	goto error;
++	InputInfoPtr local = pInfo;
+ 	mt = calloc(1, sizeof(struct mtev_mtouch));
+ 	if (!mt)
+ 		goto error;
+ 
+-	local->name = dev->identifier;
++	//local->name = dev->identifier;
+ 	local->type_name = XI_TOUCHSCREEN;
+ 	local->device_control = device_control;
+ 	local->read_input = read_input;
+@@ -372,9 +378,9 @@ static InputInfoPtr preinit(InputDriverP
+ 	local->flags = XI86_POINTER_CAPABLE |
+ 		XI86_SEND_DRAG_EVENTS;
+ 
+-	local->conf_idev = dev;
++	//local->conf_idev = dev;
+ 
+-	xf86CollectInputOptions(local, NULL, NULL);
++	xf86CollectInputOptions(local, NULL);
+ 	//xf86OptionListReport(local->options);
+ 	xf86ProcessCommonOptions(local, local->options);
+ 
+@@ -385,8 +391,9 @@ static InputInfoPtr preinit(InputDriverP
+ 
+ 	local->flags |= XI86_CONFIGURED;
+ 
++	return Success;
+ error:
+-	return local;
++	return !Success;
+ }
+ 
+ static void uninit(InputDriverPtr drv, InputInfoPtr local, int flags)
+@@ -403,7 +410,7 @@ static InputDriverRec MTEV = {
+ 	.PreInit = preinit,
+ 	.UnInit = uninit,
+ 	.module = NULL,
+-	.refCount = 0
++	.default_options = NULL
+ };
+ 
+ static XF86ModuleVersionInfo VERSION = {
