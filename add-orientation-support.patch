@@ -17,9 +17,9 @@ index 7ba02c7..d43a068 100644
  	bool invert_y;
  	bool swap_xy;
 +        int rotation;
+	struct mtdev dev;
+ };
  
- 	int min_x;
- 	int max_x;
 diff --git a/src/multitouch.c b/src/multitouch.c
 index c55d742..51d6a78 100644
 --- a/src/multitouch.c
