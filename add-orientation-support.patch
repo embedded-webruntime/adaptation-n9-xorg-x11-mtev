@@ -32,25 +32,25 @@ index c55d742..51d6a78 100644
 +			{
 +				case 1:
 +				{
-+					const int tmp = (mt->max_x - x) * (mt->max_y - mt->min_y) / (mt->max_x - mt->min_x) + mt->min_y;
-+                                	x = (y - mt->min_y) * (mt->max_x - mt->min_x) / (mt->max_y - mt->min_y) + mt->min_x;
++					const int tmp = (mt->caps.abs_position_x.maximum - x) * (mt->caps.abs_position_x.maximum - mt->caps.abs_position_y.minimum) / (mt->caps.abs_position_x.maximum - mt->caps.abs_position_x.minimum) + mt->caps.abs_position_y.minimum;
++                                	x = (y - mt->caps.abs_position_y.minimum) * (mt->caps.abs_position_x.maximum - mt->caps.abs_position_x.minimum) / (mt->caps.abs_position_y.maximum - mt->caps.abs_position_y.minimum) + mt->caps.abs_position_x.minimum;
 +					y = tmp;
 +					break;
 +				}
 +				case 2:
 +				{
-+					x = mt->max_x - x + mt->min_x;
-+					y = mt->max_y - y + mt->min_y;
++					x = mt->caps.abs_position_x.maximum - x + mt->caps.abs_position_x.minimum;
++					y = mt->caps.abs_position_y.maximum - y + mt->caps.abs_position_y.minimum;
 +					break;
 +				}
 +				case 3:
 +				{
-+					const int tmp = (x - mt->min_x) * (mt->max_y - mt->min_y) / (mt->max_x - mt->min_x) + mt->min_y;
-+                                        x = (mt->max_y - y) * (mt->max_x - mt->min_x) / (mt->max_y - mt->min_y) + mt->min_x;
++					const int tmp = (x - mt->caps.abs_position_x.minimum) * (mt->caps.abs_position_y.maximum - mt->caps.abs_position_y.minimum) / (mt->caps.abs_position_x.maximum - mt->caps.abs_position_x.minimum) + mt->caps.abs_position_y.minimum;
++                                        x = (mt->caps.abs_position_y.maximum - y) * (mt->caps.abs_position_x.maximum - mt->caps.abs_position_x.minimum) / (mt->caps.abs_position_y.maximum - mt->caps.abs_position_y.minimum) + mt->caps.abs_position_x.minimum;
 +                                        y = tmp;
 +					break;
 +				}
-+
++                        }
  			valuators[valix++] = x;
  			valuators[valix++] = y;
  			valuators[valix++] = tp->touch_major;

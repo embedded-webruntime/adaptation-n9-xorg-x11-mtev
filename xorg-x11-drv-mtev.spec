@@ -8,7 +8,7 @@
 Name:       xorg-x11-drv-mtev
 Summary:    Multitouch input driver for Xserver
 Version:    0.1.13
-Release:    1
+Release:    2
 Group:      System/X Hardware Support
 License:    GPLv2
 URL:        http://gitorious.org/xorg/xf86-input-mtev
@@ -19,8 +19,8 @@ Source3:    80-Hanvon-mtev.conf
 Source4:    90-ILI-mtev.conf
 Source5:    91-ecss10ot3.conf
 Source100:  xorg-x11-drv-mtev.yaml
-Patch0:     apis-match-for-xserver-1.10.1.patch     	
-Patch1:     add-orientation-support.patch	    
+#Patch0:     add-orientation-support.patch     	
+#Patch1:     apis-match-for-xserver-1.10.1.patch	    
 BuildRequires:  pkgconfig(xorg-server)
 BuildRequires:  pkgconfig(xkbfile)
 BuildRequires:  pkgconfig(xproto)
@@ -37,10 +37,10 @@ This is a xserver-xorg input driver for devices supporting Linux Multi-Touch pro
 %prep
 %setup -q -n %{name}-%{version}
 # apis-match-for-xserver-1.10.1.patch
-%patch0 -p1
+#%patch0 -p1
 
 # add-orientation-support.patch
-%patch1 -p1
+#%patch1 -p1
 
 # >> setup
 # << setup
